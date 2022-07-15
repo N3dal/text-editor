@@ -78,6 +78,21 @@ def start_app(root: tkinter.Tk):
 def main_window():
     """the main window for the Text Editor."""
 
+    root = tkinter.Tk()
+
+    root.title(WIN_TITLE)
+
+    # setup the size and the position.
+    root.geometry(f"{WIN_WIDTH}x{WIN_HEIGHT}")
+
+    # make the window un-resizable.
+    root.resizable(False, False)
+
+    # change the background color.
+    root.configure(bg=WIN_BG)
+
+    start_app(root)
+
 
 def main():
     """"""
