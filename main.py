@@ -109,6 +109,19 @@ def main_window():
     text_edit = tkinter.Text(root, **TEXT_EDIT_PROPERTIES)
     text_edit.place(x=0, y=48)
 
+    # create the main buttons.
+    save_btn = tkinter.Button(
+        root, text="Save", command=None, **BTN_PROPERTIES)
+    save_btn.place(x=3, y=12)
+
+    save_as_btn = tkinter.Button(
+        root, text="Save As", command=None, **BTN_PROPERTIES)
+    save_as_btn.place(x=58, y=12)
+
+    open_btn = tkinter.Button(
+        root, text="Open", command=None, **BTN_PROPERTIES)
+    open_btn.place(x=132, y=12)
+
     start_app(root)
 
 
