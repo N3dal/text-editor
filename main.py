@@ -49,7 +49,7 @@ BTN_PROPERTIES = {
 }
 
 TEXT_EDIT_PROPERTIES = {
-    "font": (WIN_FONT_FAMILY, 11),
+    "font": (WIN_FONT_FAMILY, 10),
     "border": 0,
     "bd": 0,
     "borderwidth": 0,
@@ -58,12 +58,12 @@ TEXT_EDIT_PROPERTIES = {
     "highlightcolor": "black",
     "bg": "#34495E",
     "fg": WIN_FG,
-    "height": 29
+    "height": 32
 
 }
 
 TAB_PROPERTIES = {
-    "font": (WIN_FONT_FAMILY, 9),
+    "font": (WIN_FONT_FAMILY, 8),
     "border": 0,
     "bd": 0,
     "borderwidth": 0,
@@ -82,7 +82,7 @@ TAB_PROPERTIES = {
 BOTTOM_FRAME_PROPERTIES = {
     "bg": "#9E54BD",
     "width": 500,
-    "height": 26
+    "height": 30
 }
 
 
@@ -147,7 +147,11 @@ def main_window():
 
     # create Tab label to show the file name.
     tab = tkinter.Label(root, text="Untitled", **TAB_PROPERTIES)
-    tab.place(x=217, y=5)
+    tab.place(x=228, y=7)
+
+    # create bottom frame.
+    bottom_frame = tkinter.Frame(root, **BOTTOM_FRAME_PROPERTIES)
+    bottom_frame.place(x=0, y=570)
 
     start_app(root)
 
