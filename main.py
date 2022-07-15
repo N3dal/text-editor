@@ -73,7 +73,7 @@ TAB_PROPERTIES = {
     "bg": "#34495E",
     "fg": WIN_FG,
     "padx": 10,
-    "anchor": "w",
+    "anchor": "center",
     "width": 40,
     "height": 3
 
@@ -82,7 +82,7 @@ TAB_PROPERTIES = {
 BOTTOM_FRAME_PROPERTIES = {
     "bg": "#9E54BD",
     "width": 500,
-    "height": 30
+    "height": 35
 }
 
 
@@ -151,7 +151,7 @@ def main_window():
 
     # create bottom frame.
     bottom_frame = tkinter.Frame(root, **BOTTOM_FRAME_PROPERTIES)
-    bottom_frame.place(x=0, y=570)
+    bottom_frame.place(x=0, y=565)
 
     start_app(root)
 
