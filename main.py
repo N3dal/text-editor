@@ -57,9 +57,7 @@ TEXT_EDIT_PROPERTIES = {
     "highlightthickness": 0,
     "highlightcolor": "black",
     "bg": "#34495E",
-    "activebackground": "#9E54BD",
     "fg": WIN_FG,
-    "activeforeground": "white",
     "height": 29
 
 }
@@ -106,6 +104,10 @@ def main_window():
 
     # change the background color.
     root.configure(bg=WIN_BG)
+
+    # create The main Text widget for edit and save our text.
+    text_edit = tkinter.Text(root, **TEXT_EDIT_PROPERTIES)
+    text_edit.place(x=0, y=48)
 
     start_app(root)
 
