@@ -16,6 +16,7 @@ from os import system
 from os import name as OS_NAME
 import tkinter
 from tkinter.constants import END
+import tkinter.filedialog as file_dialog
 
 # TO-DO:
 # [1]- make sure to add line number, mean that user can they,
@@ -104,10 +105,14 @@ def clear():
 clear()
 
 
-def start_app(root: tkinter.Tk):
+def start_app(root: tkinter.Tk, **app_start_options):
     """start the main loop for the program.
     program start-up so put any thing here,
     if you want it to start with program start-up."""
+
+    if "tab_file_name" in app_start_options:
+        # create the default name for the files.
+        kwargs["tab_file_name"].set("Untitled")
 
     root.mainloop()
 
@@ -145,15 +150,19 @@ def main_window():
         root, text="Open", command=None, **BTN_PROPERTIES)
     open_btn.place(x=132, y=12)
 
+    # create our special variable, that we will use it,
+    # for storing the tab file name.
+    file_name = tkinter.StringVar()
+
     # create Tab label to show the file name.
-    tab = tkinter.Label(root, text="Untitled", **TAB_PROPERTIES)
+    tab = tkinter.Label(root, textvariable=file_name, **TAB_PROPERTIES)
     tab.place(x=228, y=7)
 
     # create bottom frame.
     bottom_frame = tkinter.Frame(root, **BOTTOM_FRAME_PROPERTIES)
     bottom_frame.place(x=0, y=565)
 
-    start_app(root)
+    start_app(root, tab_file_name=file_name)
 
 
 def main():
