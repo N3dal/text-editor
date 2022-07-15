@@ -111,8 +111,9 @@ def start_app(root: tkinter.Tk, **app_start_options):
     if you want it to start with program start-up."""
 
     if "tab_file_name" in app_start_options:
-        # create the default name for the files.
-        kwargs["tab_file_name"].set("Untitled")
+        # create the default name for the file on the tab,
+        # when the file is not saved, or when we create new file.
+        app_start_options["tab_file_name"].set("Untitled")
 
     root.mainloop()
 
@@ -163,6 +164,18 @@ def main_window():
     bottom_frame.place(x=0, y=565)
 
     start_app(root, tab_file_name=file_name)
+
+
+def open_click():
+    """btn event when we click on the open button."""
+
+
+def save_as_click():
+    """btn event when we click on the save-as button."""
+
+
+def save_click():
+    """btn event when we click on the save button."""
 
 
 def main():
