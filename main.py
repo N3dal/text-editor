@@ -48,6 +48,22 @@ BTN_PROPERTIES = {
 
 }
 
+TEXT_EDIT_PROPERTIES = {
+    "font": (WIN_FONT_FAMILY, 11),
+    "border": 0,
+    "bd": 0,
+    "borderwidth": 0,
+    "highlightbackground": "Black",
+    "highlightthickness": 0,
+    "highlightcolor": "black",
+    "bg": "#34495E",
+    "activebackground": "#9E54BD",
+    "fg": WIN_FG,
+    "activeforeground": "white",
+    "height": 29
+
+}
+
 
 def clear():
     """wipe terminal screen."""
