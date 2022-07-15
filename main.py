@@ -67,8 +67,21 @@ def clear():
 clear()
 
 
+def start_app(root: tkinter.Tk):
+    """start the main loop for the program.
+    program start-up so put any thing here,
+    if you want it to start with program start-up."""
+
+    root.mainloop()
+
+
+def main_window():
+    """the main window for the Text Editor."""
+
+
 def main():
-    pass
+    """"""
+    main_window()
 
 
 if __name__ == "__main__":
