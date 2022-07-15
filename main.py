@@ -62,6 +62,23 @@ TEXT_EDIT_PROPERTIES = {
 
 }
 
+TAB_PROPERTIES = {
+    "font": (WIN_FONT_FAMILY, 9),
+    "border": 0,
+    "bd": 0,
+    "borderwidth": 0,
+    "highlightbackground": "Black",
+    "highlightthickness": 0,
+    "highlightcolor": "black",
+    "bg": "#34495E",
+    "fg": WIN_FG,
+    "padx": 10,
+    "anchor": "w",
+    "width": 40,
+    "height": 3
+
+}
+
 
 def clear():
     """wipe terminal screen."""
@@ -121,6 +138,10 @@ def main_window():
     open_btn = tkinter.Button(
         root, text="Open", command=None, **BTN_PROPERTIES)
     open_btn.place(x=132, y=12)
+
+    # create Tab label to show the file name.
+    tab = tkinter.Label(root, text="Untitled", **TAB_PROPERTIES)
+    tab.place(x=217, y=5)
 
     start_app(root)
 
