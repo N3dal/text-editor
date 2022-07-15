@@ -79,6 +79,12 @@ TAB_PROPERTIES = {
 
 }
 
+BOTTOM_FRAME_PROPERTIES = {
+    "bg": "#9E54BD",
+    "width": 500,
+    "height": 26
+}
+
 
 def clear():
     """wipe terminal screen."""
