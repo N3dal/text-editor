@@ -4,7 +4,7 @@ simple text editor with Nice **Theme** build with ![python](https://img.shields.
 this project is just simple text editor that can do almost basic things like **open file**
 or **save file** and **edit those files** and any basic thing for simple text editor.
 
-###**project state**:![still-work-on-it](https://img.shields.io/badge/still--work-on--it-important)
+### Project-Status :![still-work-on-it](https://img.shields.io/badge/still--work-on--it-important)
 
 
 ## Demo:
