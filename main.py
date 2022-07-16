@@ -86,6 +86,13 @@ BOTTOM_FRAME_PROPERTIES = {
     "height": 35
 }
 
+# create save path so when we click on the save,
+# button the program save the file directly.
+# 'None' indicate that there's no file save path,
+# so we will ask the user to select path and then save it,
+# in this variable to use it again later.
+file_save_path = None
+
 
 def clear():
     """wipe terminal screen."""
@@ -134,13 +141,17 @@ def main_window():
     # change the background color.
     root.configure(bg=WIN_BG)
 
+    # create our special variable, that we will use it,
+    # for storing the tab file name.
+    file_name = tkinter.StringVar()
+
     # create The main Text widget for edit and save our text.
     text_edit = tkinter.Text(root, **TEXT_EDIT_PROPERTIES)
     text_edit.place(x=0, y=48)
 
     # create the main buttons.
     save_btn = tkinter.Button(
-        root, text="Save", command=None, **BTN_PROPERTIES)
+        root, text="Save", command=lambda: save_click(file_name, text_edit), **BTN_PROPERTIES)
     save_btn.place(x=3, y=12)
 
     save_as_btn = tkinter.Button(
@@ -150,17 +161,6 @@ def main_window():
     open_btn = tkinter.Button(
         root, text="Open", command=None, **BTN_PROPERTIES)
     open_btn.place(x=132, y=12)
-
-    # create our special variable, that we will use it,
-    # for storing the tab file name.
-    file_name = tkinter.StringVar()
-
-    # create save path so when we click on the save,
-    # button the program save the file directly.
-    # 'None' indicate that there's no file save path,
-    # so we will ask the user to select path and then save it,
-    # in this variable to use it again later.
-    file_save_path = None
 
     # create Tab label to show the file name.
     tab = tkinter.Label(root, textvariable=file_name, **TAB_PROPERTIES)
@@ -181,8 +181,27 @@ def save_as_click():
     """btn event when we click on the save-as button."""
 
 
-def save_click():
-    """btn event when we click on the save button."""
+def save_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
+    """btn event when we click on the save button.
+    this will update the save path and update,
+    the file name on the tab, and save our file."""
+
+    global file_save_path
+
+    # first checkout if we have save-path or not,
+    # if we have save the file directly , if not,
+    # ask the users about the file save path they,
+    # want.
+    if file_save_path is None:
+        # there's no file-save path.
+
+        file_save_path = file_dialog.asksaveasfilename(
+            title="Save", initialfile=file_name.get()
+        )
+    file_name.set(file_save_path.split('/')[-1])
+
+    with open(file_save_path, "w") as file:
+        file.writelines(text_edit.get("1.0", END))
 
 
 def main():
