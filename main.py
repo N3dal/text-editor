@@ -159,7 +159,7 @@ def main_window():
     save_as_btn.place(x=58, y=12)
 
     open_btn = tkinter.Button(
-        root, text="Open", command=None, **BTN_PROPERTIES)
+        root, text="Open", command=lambda: open_click(file_name, text_edit), **BTN_PROPERTIES)
     open_btn.place(x=132, y=12)
 
     # create Tab label to show the file name.
@@ -173,11 +173,31 @@ def main_window():
     start_app(root, tab_file_name=file_name)
 
 
-def open_click():
+def open_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
     """btn event when we click on the open button."""
 
+    global file_save_path
 
-def save_as_click(file_name, text_edit):
+    file_save_path = file_dialog.askopenfilename(title="Open")
+
+    # get the file name, and set also.
+    file_name.set(file_save_path.split('/')[-1])
+
+    with open(file_save_path, "r") as file:
+        file_data = file.readlines()
+
+    # concatenate all the string on the file_data list.
+    text_data = "".join(file_data)
+
+    # before we insert anything we must insure we,
+    # clear the Text on the Widget before.
+    text_edit.delete("1.0", END)
+
+    # now we will insert the string in Text widget.
+    text_edit.insert(END, text_data)
+
+
+def save_as_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
     """btn event when we click on the save-as button.
     using this the user can select new save path,
     or change the file name and this also will update,
@@ -191,8 +211,8 @@ def save_as_click(file_name, text_edit):
     # get the file name, and set also.
     file_name.set(file_save_path.split('/')[-1])
 
-    with open(file_save_path, "w") as f:
-        f.writelines(text_edit.get("1.0", END))
+    with open(file_save_path, "w") as file:
+        file.writelines(text_edit.get("1.0", END))
 
 
 def save_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
