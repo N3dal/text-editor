@@ -178,7 +178,17 @@ def open_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
 
     global file_save_path
 
-    file_save_path = file_dialog.askopenfilename(title="Open")
+    open_path_from_dialog = file_dialog.askopenfilename(title="Open")
+    print(open_path_from_dialog)
+
+    # guard conditions.
+    if type(open_path_from_dialog) != str:
+        # that happen when the user click on the cancel,
+        # button on the dialog.
+        # in this case end everything.
+        return None
+
+    file_save_path = open_path_from_dialog
 
     # get the file name, and set also.
     file_name.set(file_save_path.split('/')[-1])
@@ -205,7 +215,7 @@ def save_as_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
 
     global file_save_path
 
-    file_save_path = file_dialog.asksaveasfilename(
+    save_as_path_from_dialog = file_dialog.asksaveasfilename(
         title="Save As", initialfile=file_name.get())
 
     # get the file name, and set also.
