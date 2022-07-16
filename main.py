@@ -155,7 +155,7 @@ def main_window():
     save_btn.place(x=3, y=12)
 
     save_as_btn = tkinter.Button(
-        root, text="Save As", command=None, **BTN_PROPERTIES)
+        root, text="Save As", command=lambda: save_as_click(file_name, text_edit), **BTN_PROPERTIES)
     save_as_btn.place(x=58, y=12)
 
     open_btn = tkinter.Button(
@@ -177,8 +177,22 @@ def open_click():
     """btn event when we click on the open button."""
 
 
-def save_as_click():
-    """btn event when we click on the save-as button."""
+def save_as_click(file_name, text_edit):
+    """btn event when we click on the save-as button.
+    using this the user can select new save path,
+    or change the file name and this also will update,
+    the file-save path and also the file name on the tab."""
+
+    global file_save_path
+
+    file_save_path = file_dialog.asksaveasfilename(
+        title="Save As", initialfile=file_name.get())
+
+    # get the file name, and set also.
+    file_name.set(file_save_path.split('/')[-1])
+
+    with open(file_save_path, "w") as f:
+        f.writelines(text_edit.get("1.0", END))
 
 
 def save_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
@@ -198,6 +212,8 @@ def save_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
         file_save_path = file_dialog.asksaveasfilename(
             title="Save", initialfile=file_name.get()
         )
+
+    # get the file name, and set also.
     file_name.set(file_save_path.split('/')[-1])
 
     with open(file_save_path, "w") as file:
