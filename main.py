@@ -32,19 +32,6 @@ from tools import Tools
 Tools.clear()
 
 
-def start_app(root: tkinter.Tk, **app_start_options):
-    """start the main loop for the program.
-    program start-up so put any thing here,
-    if you want it to start with program start-up."""
-
-    if "tab_file_name" in app_start_options:
-        # create the default name for the file on the tab,
-        # when the file is not saved, or when we create new file.
-        app_start_options["tab_file_name"].set("Untitled")
-
-    root.mainloop()
-
-
 class App(tkinter.Tk):
     """the main window for the Text Editor."""
 
