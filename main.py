@@ -12,12 +12,11 @@
 # ///
 # -----------------------------------------------------------------
 
-from os import system
-from os import name as OS_NAME
 import tkinter
 from tkinter.constants import END
 import tkinter.filedialog as file_dialog
 from defaults import *
+from tools import Tools
 
 # TO-DO:
 # [1]- make sure to add line number, mean that user can they,
@@ -30,24 +29,7 @@ from defaults import *
 # [5]- separate the program into group of files (constants, tools, ..., etc)
 
 
-def clear():
-    """wipe terminal screen."""
-    if OS_NAME == "posix":
-        # for *nix machines.
-        system("clear")
-
-    elif OS_NAME == "windows":
-        system("cls")
-
-    else:
-        # for any os in the world.
-        # system("your-command")
-        pass
-
-    return None
-
-
-clear()
+Tools.clear()
 
 
 def start_app(root: tkinter.Tk, **app_start_options):
