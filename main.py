@@ -26,6 +26,7 @@ import tkinter.filedialog as file_dialog
 # vscode show us the cursor position and the interpreter and etc...
 # [4]- add settings page to control of the font size and the last open,
 # files, and font color....etc.
+# [5]- separate the program into group of files (constants, tools, ..., etc)
 
 # Setup the Defaults.
 WIN_TITLE = "Text Editor"
