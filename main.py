@@ -108,6 +108,8 @@ def clear():
         # system("your-command")
         pass
 
+    return None
+
 
 clear()
 
@@ -125,52 +127,65 @@ def start_app(root: tkinter.Tk, **app_start_options):
     root.mainloop()
 
 
-def main_window():
+class App(tkinter.Tk):
     """the main window for the Text Editor."""
 
-    root = tkinter.Tk()
+    def __init__(self):
+        super().__init__()
 
-    root.title(WIN_TITLE)
+        self.title(WIN_TITLE)
 
-    # setup the size and the position.
-    root.geometry(f"{WIN_WIDTH}x{WIN_HEIGHT}")
+        # setup the size and the position.
+        self.geometry(f"{WIN_WIDTH}x{WIN_HEIGHT}")
 
-    # make the window un-resizable.
-    root.resizable(False, False)
+        # make the window un-resizable.
+        self.resizable(False, False)
 
-    # change the background color.
-    root.configure(bg=WIN_BG)
+        # change the background color.
+        self.configure(bg=WIN_BG)
 
-    # create our special variable, that we will use it,
-    # for storing the tab file name.
-    file_name = tkinter.StringVar()
+        # create our special variable, that we will use it,
+        # for storing the tab file name.
+        file_name = tkinter.StringVar()
 
-    # create The main Text widget for edit and save our text.
-    text_edit = tkinter.Text(root, **TEXT_EDIT_PROPERTIES)
-    text_edit.place(x=0, y=48)
+        # create The main Text widget for edit and save our text.
+        text_edit = tkinter.Text(self, **TEXT_EDIT_PROPERTIES)
+        text_edit.place(x=0, y=48)
 
-    # create the main buttons.
-    save_btn = tkinter.Button(
-        root, text="Save", command=lambda: save_click(file_name, text_edit), **BTN_PROPERTIES)
-    save_btn.place(x=3, y=12)
+        # create the main buttons.
+        save_btn = tkinter.Button(
+            self, text="Save", command=lambda: save_click(file_name, text_edit), **BTN_PROPERTIES)
+        save_btn.place(x=3, y=12)
 
-    save_as_btn = tkinter.Button(
-        root, text="Save As", command=lambda: save_as_click(file_name, text_edit), **BTN_PROPERTIES)
-    save_as_btn.place(x=58, y=12)
+        save_as_btn = tkinter.Button(
+            self, text="Save As", command=lambda: save_as_click(file_name, text_edit), **BTN_PROPERTIES)
+        save_as_btn.place(x=58, y=12)
 
-    open_btn = tkinter.Button(
-        root, text="Open", command=lambda: open_click(file_name, text_edit), **BTN_PROPERTIES)
-    open_btn.place(x=132, y=12)
+        open_btn = tkinter.Button(
+            self, text="Open", command=lambda: open_click(file_name, text_edit), **BTN_PROPERTIES)
+        open_btn.place(x=132, y=12)
 
-    # create Tab label to show the file name.
-    tab = tkinter.Label(root, textvariable=file_name, **TAB_PROPERTIES)
-    tab.place(x=228, y=7)
+        # create Tab label to show the file name.
+        tab = tkinter.Label(self, textvariable=file_name, **TAB_PROPERTIES)
+        tab.place(x=228, y=7)
 
-    # create bottom frame.
-    bottom_frame = tkinter.Frame(root, **BOTTOM_FRAME_PROPERTIES)
-    bottom_frame.place(x=0, y=565)
+        # create bottom frame.
+        bottom_frame = tkinter.Frame(self, **BOTTOM_FRAME_PROPERTIES)
+        bottom_frame.place(x=0, y=565)
 
-    start_app(root, tab_file_name=file_name)
+    def start_app(self, **options):
+        """
+        start the main loop for the program.
+        program start-up so put any thing here,
+        if you want it to start with program start-up.
+        """
+
+        if "tab_file_name" in options:
+            # create the default name for the file on the tab,
+            # when the file is not saved, or when we create new file.
+            options["tab_file_name"].set("Untitled")
+
+        self.mainloop()
 
 
 def open_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
@@ -252,7 +267,9 @@ def save_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
 
 def main():
     """"""
-    main_window()
+    # main_window()
+    app = App()
+    app.start_app()
 
 
 if __name__ == "__main__":
