@@ -60,7 +60,7 @@ TAB_INDICATOR_PROPERTIES = {
     "highlightbackground": "Black",
     "highlightthickness": 0,
     "highlightcolor": "black",
-    "bg": "green",
+    "bg": "#9965CF",
     "fg": WIN_FG,
     "padx": 10,
     "anchor": "center",
