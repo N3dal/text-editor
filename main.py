@@ -37,20 +37,31 @@ class Tab:
 
     all_tabs = []
 
-    def __init__(self, master: tkinter.Tk, file_name=""):
+    def __init__(self, master: tkinter.Tk, tab_text="Untitled"):
 
         self.master = master
-        self.file_name = file_name
 
         # TODO: change from Label to Frame.
-        # create Tab label to show the file name.
-        # self.tab = tkinter.Label(
-        #     master, textvariable=self.file_name, **TAB_PROPERTIES)
 
+        # create the the Tab main Frame.
         self.tab = tkinter.Frame(
             master, **TAB_PROPERTIES)
 
-        # create Tab Indicator Label for showing the current tab.
+        # create the var to store the tab title content inside of it.
+        self.tab_text = tkinter.StringVar(master=self.tab)
+        self.tab_text.set(tab_text)
+
+        # crete the tab title.
+        self.tab_text_label = tkinter.Label(
+            self.tab, textvariable=self.tab_text, **TAB_TEXT_PROPERTIES)
+
+        # get the required width to print the text on the label,
+        # so we can center the title.
+        text_required_width = self.tab_text_label.winfo_reqwidth()
+
+        self.tab_text_label.place(x=text_required_width//2, y=11)
+
+        # create Tab Indicator Frame for showing the current tab.
         self.tab_indicator = tkinter.Frame(
             master, ** TAB_INDICATOR_PROPERTIES)
 
@@ -65,6 +76,13 @@ class Tab:
         self.tab_indicator.place(x=x, y=y-1)
 
         return True
+
+    def set_title(self, title: str):
+        """change the tab title"""
+
+        self.tab_text.set(title)
+
+        return None
 
     def __repr__(self):
 
@@ -109,8 +127,10 @@ class App(tkinter.Tk):
             self, text="Open", command=lambda: open_click(file_name, text_edit), **BTN_PROPERTIES)
         open_btn.place(x=132, y=12)
 
-        tab = Tab(self, file_name=file_name)
+        tab = Tab(self)
         tab.place(228, 7)
+
+        tab.set_title("Free to born again")
 
         # create bottom frame.
         bottom_frame = tkinter.Frame(self, **BOTTOM_FRAME_PROPERTIES)
