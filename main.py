@@ -32,6 +32,41 @@ import tkinter.filedialog as file_dialog
 Tools.clear()
 
 
+class Tab:
+    """file tab for showing the file name, and with the current tab indicator"""
+
+    all_tabs = []
+
+    def __init__(self, master: tkinter.Tk, file_name=""):
+
+        self.master = master
+        self.file_name = file_name
+
+        # create Tab label to show the file name.
+        self.tab = tkinter.Label(
+            master, textvariable=self.file_name, **TAB_PROPERTIES)
+
+        # create Tab Indicator Label for showing the current tab.
+        self.tab_indicator = tkinter.Label(
+            master, textvariable=self.file_name, **TAB_INDICATOR_PROPERTIES)
+
+        Tab.all_tabs.append(self)
+
+    def place(self, x: int, y: int):
+        """place the tab with its own indicator on the window,
+        in specific coordinates.
+        return True if everything go fine else it will raise an Error."""
+
+        self.tab.place(x=x, y=y)
+        self.tab_indicator.place(x=x, y=y-1)
+
+        return True
+
+    def __repr__(self):
+
+        return f"Tab({self.master}, '{self.file_name}')"
+
+
 class App(tkinter.Tk):
     """the main window for the Text Editor."""
 
@@ -70,13 +105,8 @@ class App(tkinter.Tk):
             self, text="Open", command=lambda: open_click(file_name, text_edit), **BTN_PROPERTIES)
         open_btn.place(x=132, y=12)
 
-        # create Tab label to show the file name.
-        tab = tkinter.Label(self, textvariable=file_name, **TAB_PROPERTIES)
-        tab.place(x=228, y=7)
-
-        tab_indicator = tkinter.Label(
-            self, textvariable=file_name, **TAB_INDICATOR_PROPERTIES)
-        tab_indicator.place(x=228, y=6)
+        tab = Tab(self, file_name=file_name)
+        tab.place(228, 7)
 
         # create bottom frame.
         bottom_frame = tkinter.Frame(self, **BOTTOM_FRAME_PROPERTIES)
