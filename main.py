@@ -12,11 +12,11 @@
 # ///
 # -----------------------------------------------------------------
 
+from defaults import *
+from tools import Tools
 import tkinter
 from tkinter.constants import END
 import tkinter.filedialog as file_dialog
-from defaults import *
-from tools import Tools
 
 # TO-DO:
 # [1]- make sure to add line number, mean that user can they,
@@ -73,6 +73,10 @@ class App(tkinter.Tk):
         # create Tab label to show the file name.
         tab = tkinter.Label(self, textvariable=file_name, **TAB_PROPERTIES)
         tab.place(x=228, y=7)
+
+        tab_indicator = tkinter.Label(
+            self, textvariable=file_name, **TAB_INDICATOR_PROPERTIES)
+        tab_indicator.place(x=228, y=6)
 
         # create bottom frame.
         bottom_frame = tkinter.Frame(self, **BOTTOM_FRAME_PROPERTIES)
