@@ -17,7 +17,7 @@ from tools import Tools
 import tkinter
 from tkinter.constants import END
 import tkinter.filedialog as file_dialog
-
+from time import sleep as delay
 # TO-DO:
 # [1]- make sure to add line number, mean that user can they,
 # know the line number.
@@ -27,6 +27,7 @@ import tkinter.filedialog as file_dialog
 # [4]- add settings page to control of the font size and the last open,
 # files, and font color....etc.
 # [5]- separate the program into group of files (constants, tools, ..., etc)
+# [6]- add animation for all editor components.
 
 
 Tools.clear()
@@ -41,8 +42,6 @@ class Tab:
 
         self.master = master
 
-        # TODO: change from Label to Frame.
-
         # create the the Tab main Frame.
         self.tab = tkinter.Frame(
             master, **TAB_PROPERTIES)
@@ -51,7 +50,7 @@ class Tab:
         self.tab_text = tkinter.StringVar(master=self.tab)
         self.tab_text.set(tab_text)
 
-        # crete the tab title.
+        # create the tab title.
         self.tab_text_label = tkinter.Label(
             self.tab, textvariable=self.tab_text, **TAB_TEXT_PROPERTIES)
 
@@ -59,6 +58,9 @@ class Tab:
         # so we can center the title.
         text_required_width = self.tab_text_label.winfo_reqwidth()
 
+        # FIXME: the title is not in the center.
+        # INFO: i try to delete from the main frame width and then,
+        # divide on two but its not work i don't know why??
         self.tab_text_label.place(x=text_required_width//2, y=11)
 
         # create Tab Indicator Frame for showing the current tab.
@@ -83,6 +85,15 @@ class Tab:
         self.tab_text.set(title)
 
         return None
+
+    def animation(self):
+        """create animation for the tab indicator,
+        when the user click on it."""
+
+        for width in range(1, 261):
+            self.tab_indicator.configure(width=width)
+            self.master.update()
+            delay(3e-4)
 
     def __repr__(self):
 
@@ -127,10 +138,9 @@ class App(tkinter.Tk):
             self, text="Open", command=lambda: open_click(file_name, text_edit), **BTN_PROPERTIES)
         open_btn.place(x=132, y=12)
 
-        tab = Tab(self)
+        tab = Tab(self, tab_text="Hello_World.py")
         tab.place(228, 7)
-
-        tab.set_title("Free to born again")
+        tab.animation()
 
         # create bottom frame.
         bottom_frame = tkinter.Frame(self, **BOTTOM_FRAME_PROPERTIES)
