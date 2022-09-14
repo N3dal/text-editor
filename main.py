@@ -42,13 +42,17 @@ class Tab:
         self.master = master
         self.file_name = file_name
 
+        # TODO: change from Label to Frame.
         # create Tab label to show the file name.
-        self.tab = tkinter.Label(
-            master, textvariable=self.file_name, **TAB_PROPERTIES)
+        # self.tab = tkinter.Label(
+        #     master, textvariable=self.file_name, **TAB_PROPERTIES)
+
+        self.tab = tkinter.Frame(
+            master, **TAB_PROPERTIES)
 
         # create Tab Indicator Label for showing the current tab.
-        self.tab_indicator = tkinter.Label(
-            master, textvariable=self.file_name, **TAB_INDICATOR_PROPERTIES)
+        self.tab_indicator = tkinter.Frame(
+            master, ** TAB_INDICATOR_PROPERTIES)
 
         Tab.all_tabs.append(self)
 
