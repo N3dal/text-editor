@@ -36,7 +36,6 @@ TEXT_EDIT_PROPERTIES = {
 }
 
 TAB_PROPERTIES = {
-    "font": (WIN_FONT_FAMILY, 8),
     "border": 0,
     "bd": 0,
     "borderwidth": 0,
@@ -44,16 +43,13 @@ TAB_PROPERTIES = {
     "highlightthickness": 0,
     "highlightcolor": "black",
     "bg": "#34495E",
-    "fg": WIN_FG,
     "padx": 10,
-    "anchor": "center",
-    "width": 40,
-    "height": 3
+    "width": 260,
+    "height": 41
 
 }
 
 TAB_INDICATOR_PROPERTIES = {
-    "font": (WIN_FONT_FAMILY, 1),
     "border": 0,
     "bd": 0,
     "borderwidth": 0,
@@ -61,11 +57,9 @@ TAB_INDICATOR_PROPERTIES = {
     "highlightthickness": 0,
     "highlightcolor": "black",
     "bg": "#9965CF",
-    "fg": WIN_FG,
     "padx": 10,
-    "anchor": "center",
-    "width": 240,
-    "height": 1
+    "width": 260,
+    "height": 2
 
 }
 
