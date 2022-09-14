@@ -49,6 +49,21 @@ TAB_PROPERTIES = {
 
 }
 
+TAB_TEXT_PROPERTIES = {
+    "font": (WIN_FONT_FAMILY, 9),
+    "border": 0,
+    "bd": 0,
+    "borderwidth": 0,
+    "highlightbackground": "Black",
+    "highlightthickness": 0,
+    "highlightcolor": "black",
+    "bg": "#34495E",
+    "fg": WIN_FG,
+    "padx": 10,
+    "anchor": "center"
+
+}
+
 TAB_INDICATOR_PROPERTIES = {
     "border": 0,
     "bd": 0,
