@@ -188,6 +188,9 @@ class File:
         self.text_edit = text_edit
         self.tab = tab
 
+    def __repr__(self):
+        return f"File({self.text_edit}, {self.tab})"
+
     def open(self):
         """open any file
         return True if everything go fine other wise False"""
@@ -225,6 +228,12 @@ class File:
         text_edit.insert(END, text_data)
 
         return True
+
+    def save(self):
+        """"""
+
+    def save_as(self):
+        """"""
 
 
 def open_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
