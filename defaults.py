@@ -7,6 +7,8 @@ WIN_BG = "#2C3E50"
 WIN_FG = "white"
 WIN_FONT_FAMILY = "Ubuntu"
 
+TAB_SAVE_INDICATOR_CHARACTER = "●"
+
 BTN_PROPERTIES = {
     "font": (WIN_FONT_FAMILY, 10, "bold"),
     "border": 0,
@@ -43,7 +45,6 @@ TAB_PROPERTIES = {
     "highlightthickness": 0,
     "highlightcolor": "black",
     "bg": "#34495E",
-    "padx": 10,
     "width": 260,
     "height": 41
 
@@ -59,7 +60,20 @@ TAB_TEXT_PROPERTIES = {
     "highlightcolor": "black",
     "bg": "#34495E",
     "fg": WIN_FG,
-    "padx": 10,
+    "anchor": "center"
+
+}
+
+TAB_SAVE_INDICATOR_PROPERTIES = {
+    "font": (WIN_FONT_FAMILY, 7),
+    "border": 0,
+    "bd": 0,
+    "borderwidth": 0,
+    "highlightbackground": "Black",
+    "highlightthickness": 0,
+    "highlightcolor": "black",
+    "bg": "#34495E",
+    "fg": "#9965CF",
     "anchor": "center"
 
 }
@@ -72,7 +86,6 @@ TAB_INDICATOR_PROPERTIES = {
     "highlightthickness": 0,
     "highlightcolor": "black",
     "bg": "#9965CF",
-    "padx": 10,
     "width": 260,
     "height": 2
 
