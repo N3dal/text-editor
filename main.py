@@ -54,14 +54,14 @@ class Tab:
         self.tab_text_label = tkinter.Label(
             self.tab, textvariable=self.tab_text, **TAB_TEXT_PROPERTIES)
 
+        self.tab_save_indicator = tkinter.Label(
+            self.tab, text=TAB_SAVE_INDICATOR_CHARACTER, **TAB_SAVE_INDICATOR_PROPERTIES)
+
         # get the required width to print the text on the label,
         # so we can center the title.
         text_required_width = self.tab_text_label.winfo_reqwidth()
 
-        # FIXME: the title is not in the center.
-        # INFO: i try to delete from the main frame width and then,
-        # divide on two but its not work i don't know why??
-        self.tab_text_label.place(x=text_required_width//2, y=11)
+        self.tab_text_label.place(x=abs(text_required_width-260)//2, y=11)
 
         # create Tab Indicator Frame for showing the current tab.
         self.tab_indicator = tkinter.Frame(
@@ -76,6 +76,7 @@ class Tab:
 
         self.tab.place(x=x, y=y)
         self.tab_indicator.place(x=x, y=y-1)
+        self.tab_save_indicator.place(x=5, y=1)
 
         return True
 
@@ -138,7 +139,7 @@ class App(tkinter.Tk):
             self, text="Open", command=lambda: open_click(file_name, text_edit), **BTN_PROPERTIES)
         open_btn.place(x=132, y=12)
 
-        tab = Tab(self, tab_text="Hello_World.py")
+        tab = Tab(self, tab_text="long_text_for_test.py")
         tab.place(228, 7)
         tab.animation()
 
