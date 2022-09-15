@@ -139,26 +139,26 @@ class App(tkinter.Tk):
         # for storing the tab file name.
         file_name = tkinter.StringVar()
 
+        # create the Tab title.
+        tab = Tab(self)
+        tab.place(228, 7)
+
         # create The main Text widget for edit and save our text.
         text_edit = tkinter.Text(self, **TEXT_EDIT_PROPERTIES)
         text_edit.place(x=0, y=48)
 
         # create the main buttons.
         save_btn = tkinter.Button(
-            self, text="Save", command=lambda: save_click(file_name, text_edit), **BTN_PROPERTIES)
+            self, text="Save", command=lambda: save_click(file_name, text_edit, tab), **BTN_PROPERTIES)
         save_btn.place(x=3, y=12)
 
         save_as_btn = tkinter.Button(
-            self, text="Save As", command=lambda: save_as_click(file_name, text_edit), **BTN_PROPERTIES)
+            self, text="Save As", command=lambda: save_as_click(file_name, text_edit, tab), **BTN_PROPERTIES)
         save_as_btn.place(x=58, y=12)
 
         open_btn = tkinter.Button(
             self, text="Open", command=lambda: open_click(file_name, text_edit), **BTN_PROPERTIES)
         open_btn.place(x=132, y=12)
-
-        tab = Tab(self, tab_text="long_text_for_test.py")
-        tab.place(228, 7)
-        tab.animation()
 
         # create bottom frame.
         bottom_frame = tkinter.Frame(self, **BOTTOM_FRAME_PROPERTIES)
@@ -213,7 +213,7 @@ def open_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
     text_edit.insert(END, text_data)
 
 
-def save_as_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
+def save_as_click(file_name: tkinter.StringVar, text_edit: tkinter.Text, tab: Tab):
     """btn event when we click on the save-as button.
     using this the user can select new save path,
     or change the file name and this also will update,
@@ -230,8 +230,13 @@ def save_as_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
     with open(file_save_path, "w") as file:
         file.writelines(text_edit.get("1.0", END))
 
+    # now remove the save indicator.
+    tab.hide_save_indicator()
 
-def save_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
+    return None
+
+
+def save_click(file_name: tkinter.StringVar, text_edit: tkinter.Text, tab: Tab):
     """btn event when we click on the save button.
     this will update the save path and update,
     the file name on the tab, and save our file."""
@@ -254,6 +259,11 @@ def save_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
 
     with open(file_save_path, "w") as file:
         file.writelines(text_edit.get("1.0", END))
+
+    # now remove the save indicator.
+    tab.hide_save_indicator()
+
+    return None
 
 
 def main():
