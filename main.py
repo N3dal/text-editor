@@ -54,6 +54,7 @@ class Tab:
         self.tab_text_label = tkinter.Label(
             self.tab, textvariable=self.tab_text, **TAB_TEXT_PROPERTIES)
 
+        # create the save indicator.
         self.tab_save_indicator = tkinter.Label(
             self.tab, text=TAB_SAVE_INDICATOR_CHARACTER, **TAB_SAVE_INDICATOR_PROPERTIES)
 
@@ -80,6 +81,20 @@ class Tab:
 
         return True
 
+    def show_save_indicator(self):
+        """show the save indicator for the tab,
+        when the user edit the file or do any thing in the file."""
+        self.tab_save_indicator.place(x=5, y=1)
+
+        return None
+
+    def hide_save_indicator(self):
+        """hide the save indicator when the user save the file,
+        or you can say save the changes."""
+        self.tab_save_indicator.place_forget()
+
+        return None
+
     def set_title(self, title: str):
         """change the tab title"""
 
@@ -95,6 +110,8 @@ class Tab:
             self.tab_indicator.configure(width=width)
             self.master.update()
             delay(3e-4)
+
+        return True
 
     def __repr__(self):
 
