@@ -179,6 +179,54 @@ class App(tkinter.Tk):
         self.mainloop()
 
 
+class File:
+    """to open/save/save_as files."""
+
+    file_save_path = None
+
+    def __init__(self, text_edit: tkinter.Text, tab: Tab):
+        self.text_edit = text_edit
+        self.tab = tab
+
+    def open(self):
+        """open any file
+        return True if everything go fine other wise False"""
+
+        open_path_from_dialog = file_dialog.askopenfilename(title="Open")
+
+        # guard conditions.
+        if type(open_path_from_dialog) != str:
+            # that happen when the user click on the cancel,
+            # button on the dialog.
+            # in this case end everything.
+            return False
+
+        File.file_save_path = open_path_from_dialog
+
+        # now get the file name from the file path,
+        # for set it for the tab title.
+        file_name = File.file_save_path.split('/')[-1]
+
+        # set the title and hide the save indicator.
+        self.tab.set_title(file_name)
+        self.tab.hide_save_indicator()
+
+        with open(file_save_path, "r") as file:
+            file_data = file.readlines()
+
+        # concatenate all the string on the file_data list.
+        text_data = "".join(file_data)
+
+        # before we insert anything we must insure we,
+        # clear the Text on the Widget before.
+        text_edit.delete("1.0", END)
+
+        # now we will insert the string in Text widget.
+        text_edit.insert(END, text_data)
+
+        return True
+
+
 def open_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
     """btn event when we click on the open button."""
 
