@@ -147,17 +147,20 @@ class App(tkinter.Tk):
         text_edit = tkinter.Text(self, **TEXT_EDIT_PROPERTIES)
         text_edit.place(x=0, y=48)
 
+        # create empty file.
+        initial_file = File(text_edit, tab)
+
         # create the main buttons.
         save_btn = tkinter.Button(
-            self, text="Save", command=lambda: save_click(file_name, text_edit, tab), **BTN_PROPERTIES)
+            self, text="Save", command=initial_file.save, **BTN_PROPERTIES)
         save_btn.place(x=3, y=12)
 
         save_as_btn = tkinter.Button(
-            self, text="Save As", command=lambda: save_as_click(file_name, text_edit, tab), **BTN_PROPERTIES)
+            self, text="Save As", command=initial_file.save_as, **BTN_PROPERTIES)
         save_as_btn.place(x=58, y=12)
 
         open_btn = tkinter.Button(
-            self, text="Open", command=lambda: open_click(file_name, text_edit), **BTN_PROPERTIES)
+            self, text="Open", command=initial_file.open, **BTN_PROPERTIES)
         open_btn.place(x=132, y=12)
 
         # create bottom frame.
@@ -199,7 +202,7 @@ class File:
         open_path_from_dialog = file_dialog.askopenfilename(title="Open")
 
         # guard conditions.
-        if type(open_path_from_dialog) != str:
+        if not isinstance(open_path_from_dialog, str):
             # that happen when the user click on the cancel,
             # button on the dialog.
             # in this case end everything.
@@ -215,7 +218,7 @@ class File:
         self.tab.set_title(file_name)
         self.tab.hide_save_indicator()
 
-        with open(file_save_path, "r") as file:
+        with open(File.file_save_path, "r") as file:
             file_data = file.readlines()
 
         # concatenate all the string on the file_data list.
@@ -223,10 +226,10 @@ class File:
 
         # before we insert anything we must insure we,
         # clear the Text on the Widget before.
-        text_edit.delete("1.0", END)
+        self.text_edit.delete("1.0", END)
 
         # now we will insert the string in Text widget.
-        text_edit.insert(END, text_data)
+        self.text_edit.insert(END, text_data)
 
         return True
 
@@ -247,25 +250,47 @@ class File:
             # there's no file-save path.
 
             File.file_save_path = file_dialog.asksaveasfilename(
-                title="Save", initialfile=file_name.get()
+                title="Save", initialfile=self.tab.tab_text.get()
             )
 
         # now get the file name from the file path,
         # for set it for the tab title.
         file_name = File.file_save_path.split('/')[-1]
-
         self.tab.set_title(file_name)
 
         with open(File.file_save_path, "w") as file:
-            file.writelines(text_edit.get("1.0", END))
+            file.writelines(self.text_edit.get("1.0", END))
 
         # now remove the save indicator.
-        tab.hide_save_indicator()
+        self.tab.hide_save_indicator()
 
         return True
 
     def save_as(self):
-        """"""
+        """
+        using this the user can select new save path,
+        or change the file name and this also will update,
+        the file-save path and also the file name on the tab.
+        return True if everything go fine otherwise False"""
+
+        save_as_path_from_dialog = file_dialog.asksaveasfilename(
+            title="Save As",
+            initialfile=self.tab.tab_text.get()
+        )
+        # now get the file name from the file path,
+        # for set it for the tab title.
+        file_name = File.file_save_path.split('/')[-1]
+        self.tab.set_title(file_name)
+
+        with open(File.file_save_path, "w") as file:
+            file.writelines(
+                self.text_edit.get("1.0", END)
+            )
+
+        # now remove the save indicator.
+        self.tab.hide_save_indicator()
+
+        return None
 
 
 def open_click(file_name: tkinter.StringVar, text_edit: tkinter.Text):
