@@ -192,7 +192,8 @@ class File:
         return f"File({self.text_edit}, {self.tab})"
 
     def open(self):
-        """open any file
+        """
+        open any file.
         return True if everything go fine other wise False"""
 
         open_path_from_dialog = file_dialog.askopenfilename(title="Open")
@@ -230,7 +231,38 @@ class File:
         return True
 
     def save(self):
-        """"""
+        """
+        save the current file,
+        this will update the save path and update,
+        the file name on the tab, and save our file.
+
+        return True if everything go fine otherwise return False.
+        """
+
+        # first checkout if we have save-path or not,
+        # if we have save the file directly , if not,
+        # ask the users about the file save path they,
+        # want.
+        if File.file_save_path is None:
+            # there's no file-save path.
+
+            File.file_save_path = file_dialog.asksaveasfilename(
+                title="Save", initialfile=file_name.get()
+            )
+
+        # now get the file name from the file path,
+        # for set it for the tab title.
+        file_name = File.file_save_path.split('/')[-1]
+
+        self.tab.set_title(file_name)
+
+        with open(File.file_save_path, "w") as file:
+            file.writelines(text_edit.get("1.0", END))
+
+        # now remove the save indicator.
+        tab.hide_save_indicator()
+
+        return True
 
     def save_as(self):
         """"""
