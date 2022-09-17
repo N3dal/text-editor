@@ -279,10 +279,10 @@ class File:
         )
         # now get the file name from the file path,
         # for set it for the tab title.
-        file_name = File.file_save_path.split('/')[-1]
+        file_name = save_as_path_from_dialog.split('/')[-1]
         self.tab.set_title(file_name)
 
-        with open(File.file_save_path, "w") as file:
+        with open(save_as_path_from_dialog, "w") as file:
             file.writelines(
                 self.text_edit.get("1.0", END)
             )
