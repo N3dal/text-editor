@@ -24,7 +24,7 @@ BTN_PROPERTIES = {
 }
 
 TEXT_EDIT_PROPERTIES = {
-    "font": (WIN_FONT_FAMILY, 10),
+    "font": (WIN_FONT_FAMILY, 15),
     "border": 0,
     "bd": 0,
     "borderwidth": 0,
