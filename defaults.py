@@ -19,7 +19,8 @@ BTN_PROPERTIES = {
     "activebackground": "#9E54BD",
     "fg": WIN_FG,
     "activeforeground": "white",
-    "height": 1
+    "height": 1,
+    "cursor": "hand1"
 
 }
 

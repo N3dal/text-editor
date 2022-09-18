@@ -152,15 +152,15 @@ class App(tkinter.Tk):
         # create the main buttons.
         save_btn = tkinter.Button(
             self, text="Save", command=initial_file.save, **BTN_PROPERTIES)
-        save_btn.place(x=3, y=12)
+        save_btn.place(x=8, y=12)
 
         save_as_btn = tkinter.Button(
             self, text="Save As", command=initial_file.save_as, **BTN_PROPERTIES)
-        save_as_btn.place(x=58, y=12)
+        save_as_btn.place(x=63, y=12)
 
         open_btn = tkinter.Button(
             self, text="Open", command=initial_file.open, **BTN_PROPERTIES)
-        open_btn.place(x=132, y=12)
+        open_btn.place(x=137, y=12)
 
         # create bottom bar.
 
