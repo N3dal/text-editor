@@ -33,7 +33,8 @@ TEXT_EDIT_PROPERTIES = {
     "highlightcolor": "black",
     "bg": "#34495E",
     "fg": WIN_FG,
-    "height": 32
+    "height": 32,
+    "width": WIN_WIDTH
 
 }
 
@@ -93,7 +94,7 @@ TAB_INDICATOR_PROPERTIES = {
 
 BOTTOM_FRAME_PROPERTIES = {
     "bg": "#9E54BD",
-    "width": 500,
+    "width": WIN_WIDTH,
     "height": 35
 }
 
