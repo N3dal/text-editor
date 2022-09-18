@@ -32,7 +32,7 @@ class File:
 
         if not File.file_save_path:
             # if the file path is empty.
-            return False
+            return None
 
         # now get the file name from the file path,
         # for set it for the tab title.
@@ -106,6 +106,12 @@ class File:
             title="Save As",
             initialfile=self.tab.tab_text.get()
         )
+
+        # guard condition
+        if not save_as_path_from_dialog:
+            # if we get an empty path
+            return None
+
         # now get the file name from the file path,
         # for set it for the tab title.
         file_name = save_as_path_from_dialog.split('/')[-1]
