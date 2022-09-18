@@ -98,9 +98,4 @@ BOTTOM_FRAME_PROPERTIES = {
     "height": 35
 }
 
-# create save path so when we click on the save,
-# button the program save the file directly.
-# 'None' indicate that there's no file save path,
-# so we will ask the user to select path and then save it,
-# in this variable to use it again later.
-file_save_path = None
+
