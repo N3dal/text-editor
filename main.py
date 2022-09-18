@@ -162,9 +162,11 @@ class App(tkinter.Tk):
             self, text="Open", command=initial_file.open, **BTN_PROPERTIES)
         open_btn.place(x=132, y=12)
 
-        # create bottom frame.
-        bottom_frame = tkinter.Frame(self, **BOTTOM_FRAME_PROPERTIES)
-        bottom_frame.place(x=0, y=565)
+        # create bottom bar.
+
+        bottom_bar = BottomBar(self)
+        # place the bottom bar by default coordinates.
+        bottom_bar.place()
 
     def start_app(self, **options):
         """
@@ -179,6 +181,24 @@ class App(tkinter.Tk):
             options["tab_file_name"].set("Untitled")
 
         self.mainloop()
+
+
+class BottomBar:
+    """"""
+
+    def __init__(self, root: tkinter.Tk):
+
+        # create bottom frame.
+        self.bottom_frame = tkinter.Frame(root, **BOTTOM_FRAME_PROPERTIES)
+        # bottom_frame.place(x=0, y=565)
+
+    def place(self, x=0, y=WIN_HEIGHT-BOTTOM_FRAME_PROPERTIES["height"]):
+        """place the bottom frame on window,
+        with specific coordinates."""
+
+        self.bottom_frame.place(x=x, y=y)
+
+        return None
 
 
 def main():
