@@ -66,16 +66,21 @@ class File:
         return True if everything go fine otherwise return False.
         """
 
+        # guard condition
         # first checkout if we have save-path or not,
         # if we have save the file directly , if not,
         # ask the users about the file save path they,
         # want.
-        if File.file_save_path is None:
+        if not File.file_save_path:
             # there's no file-save path.
 
             File.file_save_path = file_dialog.asksaveasfilename(
                 title="Save", initialfile=self.tab.tab_text.get()
             )
+
+            # now check out if we get an empty path or not.
+            if not File.file_save_path:
+                return None
 
         # now get the file name from the file path,
         # for set it for the tab title.
