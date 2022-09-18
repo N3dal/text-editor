@@ -25,14 +25,14 @@ class File:
 
         open_path_from_dialog = file_dialog.askopenfilename(title="Open")
 
-        # guard conditions.
-        if not isinstance(open_path_from_dialog, str):
-            # that happen when the user click on the cancel,
-            # button on the dialog.
-            # in this case end everything.
-            return False
+        print(f"{open_path_from_dialog=}")
 
         File.file_save_path = open_path_from_dialog
+        # guard conditions.
+
+        if not File.file_save_path:
+            # if the file path is empty.
+            return False
 
         # now get the file name from the file path,
         # for set it for the tab title.
