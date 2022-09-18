@@ -2,7 +2,7 @@
 # Setup the Defaults.
 WIN_TITLE = "Text Editor"
 WIN_HEIGHT = 600
-WIN_WIDTH = 500
+WIN_WIDTH = 509
 WIN_BG = "#2C3E50"
 WIN_FG = "white"
 WIN_FONT_FAMILY = "Ubuntu"
