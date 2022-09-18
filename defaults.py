@@ -34,8 +34,7 @@ TEXT_EDIT_PROPERTIES = {
     "bg": "#34495E",
     "fg": WIN_FG,
     "height": 32,
-    "width": WIN_WIDTH
-
+    "width": 46
 }
 
 TAB_PROPERTIES = {
@@ -97,5 +96,3 @@ BOTTOM_FRAME_PROPERTIES = {
     "width": WIN_WIDTH,
     "height": 35
 }
-
-
