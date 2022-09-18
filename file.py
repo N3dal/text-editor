@@ -117,6 +117,9 @@ class File:
         file_name = save_as_path_from_dialog.split('/')[-1]
         self.tab.set_title(file_name)
 
+        # now update the file_save_path
+        File.file_save_path = save_as_path_from_dialog
+
         with open(save_as_path_from_dialog, "w") as file:
             file.writelines(
                 self.text_edit.get("1.0", END)
