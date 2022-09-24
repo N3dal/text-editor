@@ -10,7 +10,7 @@ or **save file** and **edit those files** and any basic thing for simple text ed
 
 
 ## Demo:
-!
+![screenshot_02](./pictures/screenshot_02.gif)
 
 <!-- # old version. -->
 <!-- ![screenshot_01](./pictures/screenshot_01.gif) -->
