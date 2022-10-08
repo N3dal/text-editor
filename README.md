@@ -24,6 +24,6 @@ or **save file** and **edit those files** and any basic thing for simple text ed
 ## TO-DO:
 
 - [ ] Add number for lines.
-- [ ] Saved or not Saved indicator.
+- [X] Saved or not Saved indicator.
 - [ ] Add some useful info in the bottom frame.
 - [ ] Add settings page to control of the font size for example.
